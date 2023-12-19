@@ -1,0 +1,16 @@
+#!/bin/bash
+
+read -p "Enter a 4-digit integer: " input_number
+
+# If the input is not a 4-digit integer ask the user to chose another one 
+# Do this until a valid number is inserted  
+while [ ${#input_number} != 4 ]
+do
+    read -p "A 4-digit integer is required. Please try again: " input_number
+done
+
+# Hash the input using SHA-256 and store it to hash_output.txt
+echo -n "$input_number" | sha256sum | cut -d ' ' -f 1 > hash_output.txt
+echo "Hash generated and saved in hash_output.txt"
+#`echo -n $input_number | wc -c` =~ 4
+#$input_number =~ ^[0-9]{4}$
